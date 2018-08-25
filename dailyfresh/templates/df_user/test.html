@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+
+</head>
+<body>
+
+<form action="/test/" method="post">
+    {% csrf_token %}
+    <input type="text" name="username" class="name_input" ><br>
+    <div class="user_error">输入错误</div><br>
+    <input type="submit" value="提交"><br>
+    {{ t }}
+</form>
+</body>
+</html>
