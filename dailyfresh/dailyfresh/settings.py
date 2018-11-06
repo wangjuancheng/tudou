@@ -38,9 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'df_user',
+    'tinymce',
+    'df_goods'
 ]
 
-MIDDLEWARE_CLASSES = [
+MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -132,5 +134,13 @@ STATICFILES_DIRS = (
     ('css', os.path.join(STATIC_ROOT, 'css')),
     ('images', os.path.join(STATIC_ROOT, 'images')),
     ('js', os.path.join(STATIC_ROOT, 'js')),
+    ('df_goods', os.path.join(STATIC_ROOT, 'df_goods')),
 
 )
+MEDIA_ROOT = os.path.join(BASE_DIR,'static')
+
+TINYMCE_DEFAULT_CONFIG = {
+    'theme': 'advanced',
+    'width': 600,
+    'height': 400,
+}
