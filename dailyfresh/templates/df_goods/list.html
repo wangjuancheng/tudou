@@ -1,9 +1,6 @@
 {%extends 'df_goods/base.html'%}
 {%block detail%}
 
-
-
-
 <div class="r_wrap fr clearfix">
 	<div class="sort_bar">
 
@@ -31,7 +28,7 @@
 					<div class="operate">
 						<span class="prize">{{g.gprice}}</span>
 						<span class="unit">{{g.gprice}}/{{g.gunit}}</span>
-						<a href="#" class="add_goods" title="加入购物车"></a>
+						<a href="/add{{g.id}}_1/" class="add_goods" title="加入购物车"></a>
 					</div>
 				</li>
 

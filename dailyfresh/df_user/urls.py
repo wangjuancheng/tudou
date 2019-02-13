@@ -11,8 +11,8 @@ urlpatterns = [
     url(r'login/', views.login),
     url(r'login_handle/', views.login_handle),
     url(r'info/', views.info),
-    url(r'test/', views.test),
     url(r'site/$',views.site),
     url(r'order/$', views.order),
+
 
 ]

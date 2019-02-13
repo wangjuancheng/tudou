@@ -14,6 +14,9 @@
 	function minus(){
 
 		num=parseFloat($('.num_show').val());
+		if(num<=1){
+			return;
+		}
 		$('.num_show').val(num-1);
 		$('.num_show').blur();
 
@@ -23,9 +26,14 @@
 
 		$('.num_show').blur(function (){
 			num=parseFloat($('.num_show').val());
+			if(num<=1){
+				num=1;
+			}
 			price=parseFloat($('#gprice').text());
 			total=num*price;
+			$('.num_show').val(num);
 			$('#gtotal').text(total.toFixed(2)+'元');
+
 		});
 
 	});
@@ -37,7 +45,7 @@
 {%block detail2%}
 
 <div class="goods_detail_con clearfix">
-
+		  <!--<link REL="SHORTCUT ICON" HREF=/static/images/favicon.ico/>-->
 		<div class="goods_detail_pic fl"><img src="/static/images/goods_detail.jpg"></div>
 
 		<div class="goods_detail_list fr">

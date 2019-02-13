@@ -3,6 +3,8 @@ from django.shortcuts import render,redirect
 from .models import *
 import hashlib
 from django.http import JsonResponse,HttpResponseRedirect
+from . import user_decorator
+from df_goods.models import *
 
 
 def register(request):
@@ -77,16 +79,31 @@ def login_handle(request):
         context = {'title':'用户登录','error_name':1,'error_pwd':0,'uname':uname,'upwd':upwd}
     return render(request,'df_user/login.html',context)
 
+def logout(request):
+    request.session.flush()
+    return redirect('/')
 
+@user_decorator.login
 def info(request):
     email_addr=UserInfo.objects.get(id=request.session["user_id"]).uemail
-    uname=UserInfo.objects.get(id=request.session["user_name"]).uname
+    #最近浏览
+    goods_ids=request.COOKIES.get('goods_ids','')
+    goods_ids1=goods_ids.split(',')
+    goods_list=[]
+    # for goods_id in goods_ids1:
+    #     goods_list.append(GoodsInfo.objects.get(id=int(goods_id)))
+
+    uname=UserInfo.objects.get(id=request.session["user_id"]).uname
     context={"title":'用户中心',
              "uname":uname,
-             "email_addr":email_addr}
+             "email_addr":email_addr,
+             'user_name':request.session['user_name'],
+             'page_name':1,
+              'goods_list':goods_list
+             }
     return render(request,"df_user/user_center_info.html",context)
 
-
+@user_decorator.login
 def site(request):
     user = UserInfo.objects.get(id=request.session["user_id"])
     # print("11111")
@@ -104,19 +121,10 @@ def site(request):
                "user":user}
     return render(request,"df_user/user_center_site.html",context)
 
-
+@user_decorator.login
 def order(request):
 
     context = {"title":'用户订单'}
     return render(request,"df_user/user_center_order.html",context)
 
-
-def test(request):
-    t = request.POST
-    uname = t.get('username')
-    a = UserInfo.objects.filter(uname=uname).count()
-    request.session["user_id"].id
-    print(a)
-    context = {'t':a}
-    return  render(request,'df_user/test.html',context)
 
