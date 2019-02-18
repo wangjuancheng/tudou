@@ -79,7 +79,8 @@ def detail(request,id):
 
     return render(request,'df_goods/detail.html',context)
 
-    goods_ids=request.COOKKIES.get('goods_ids','')
+    goods_ids=request.COOKIES.get('goods_ids','')
+
     goods_id='%d'%goods_id
     if goods_ids!='':
         goods_ids1=goods_ids.split(',')
