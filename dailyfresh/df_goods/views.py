@@ -63,7 +63,7 @@ def list(request,tid,pindex,sort):
                'typeinfo':typeinfo,
                'sort':sort,
                'news':news,
-               # 't':t
+              
                }
 
     return render(request,'df_goods/list.html',context)
